@@ -75,3 +75,16 @@ const button =screen.getByRole('button');
  expect(mock).toHaveBeenCalledWith({name:'santhosh',email:'santhosh@gmail.com'});
   
 })
+test('empty the two input fields', ()=>{
+    render(<UserForm onUserAdd={()=>{}}/>)
+    const nameInput =screen.getByRole('textbox',{name:/name/i});
+    const emailInput = screen.getByRole('textbox',{name:/email/i});
+    const button=screen.getByRole('button');
+    user.click(nameInput);
+    user.keyboard('santhosh');
+    user.click(emailInput);
+    user.keyboard('santhosh@gmail.com');
+    user.click(button);
+    expect(nameInput).toHaveValue('');
+    expect(emailInput).toHaveValue('');
+})
